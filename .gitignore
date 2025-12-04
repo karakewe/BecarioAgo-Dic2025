@@ -1,0 +1,49 @@
+# === Entorno virtual ===
+venv/
+ENV/
+env/
+.venv/
+*.pyc
+
+# === Archivos generados ===
+__pycache__/
+*.log
+
+# === Salidas del proyecto ===
+raw_outputs/
+cleaned/
+
+# Puedes ignorar la carpeta completa o solo archivos JSON:
+# cleaned/*.json
+# raw_outputs/*.json
+
+# === Archivos temporales ===
+*.tmp
+*.temp
+*.swp
+*.DS_Store
+
+# === Archivos de FastAPI/Uvicorn ===
+*.pid
+
+# === Archivos PDF temporales ===
+temp_*.pdf
+
+# === Configuración de editor ===
+.vscode/
+.idea/
+
+# === Caché de Python ===
+.pytest_cache/
+.cache/
+Pipfile.lock
+poetry.lock
+
+# === Para Windows ===
+Thumbs.db
+Desktop.ini
+
+# === Para Mac ===
+.DS_Store
+.AppleDouble
+.LSOverride
