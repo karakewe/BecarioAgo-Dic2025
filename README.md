@@ -31,18 +31,25 @@ pip install -r requirements.txt
 
 ## 🧩 Estructura del proyecto
 ```
-pdf-api/
-│
+.
 ├── main.py
 ├── extractor.py
 ├── requirements.txt
 ├── README.md
+├── TESTS.md
 │
-├── samples/                   # PDFs de prueba
+├── samples/
+│   ├── sample_math.pdf
+│   ├── sample_programming.pdf
+│   └── sample_science.pdf
 │
-├── raw_outputs/               # JSON crudos (Docling)
+├── raw_outputs/
+│   └── debug_raw.json
 │
-└── cleaned/                   # JSON limpios + con chunks
+├── cleaned/
+│   ├── sample_math.json
+│   ├── sample_programming.json
+│   └── sample_science.json
 ```
 ### 🧪 Bloque 1 – Servidor corriendo
 
@@ -58,25 +65,29 @@ Debe mostrarse:
 ```
 {"status": "ok"}
 ```
+Abrir en navegador:
+➡ http://127.0.0.1:8000/docs
+
+Aquí podrás subir PDFs desde el endpoint:
+```
+POST /process
+```
+
 ### 📄 Bloque 2 – Convertir PDFs con Docling
 Archivos de ejemplo
+
+Crear documentos dentro del cd:
+```
+mkdir samples
+mkdir raw_outputs
+mkdir cleaned
+```
 
 Colocar PDFs en:
 ```
 samples/
 ```
-Conversión cruda
 
-Para convertir un PDF y guardar su salida cruda:
-```
-import json
-from extractor import extract_raw
-
-raw = extract_raw("samples/calculo_integral.pdf")
-
-with open("raw_outputs/calculo_integral_raw.json", "w", encoding="utf8") as f:
-    json.dump(raw, f, indent=2, ensure_ascii=False)
-```
 ### 🧼 Bloque 3 – Limpieza y estandarización
 
 Esquema estándar del JSON final
@@ -132,18 +143,3 @@ Ejemplo con curl:
 ```
 curl -X POST -F "file=@samples/calculo_integral.pdf" http://127.0.0.1:8000/process
 ```
-## 📌 Checklist de pruebas realizadas
-
- - PDF con encabezados
-
- - PDF con listas
-
- - PDF con imágenes
-
- - PDF con tablas simples
-
- - PDFs largos
-
- - PDFs cortos
-
- - Verificación de que los chunks no superen 250 palabras
